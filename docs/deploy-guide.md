@@ -6,18 +6,25 @@
 1. 访问 [railway.app](https://railway.app)
 2. 用 GitHub 账号注册（免费，500小时/月）
 
-### 2. 一键部署
+### 2. 一键部署（推荐拆分为两个服务）
 1. Fork 本仓库到你的 GitHub
 2. 在 Railway 控制台点击 "New Project" → "Deploy from GitHub repo"
-3. 选择你 fork 的 `noteking` 仓库
-4. 设置环境变量:
-   - `NOTEKING_LLM_API_KEY` = 你的 API Key
-   - `NOTEKING_LLM_BASE_URL` = `https://api.minimax.chat/v1` (MiniMax 中国区)
-   - `NOTEKING_LLM_MODEL` = `MiniMax-M2.7`
-5. 点击 Deploy
+3. 添加两个服务：
+   - `api` 服务：使用仓库根目录（`Dockerfile`，默认启动 `8000`）
+   - `web` 服务：使用 `web` 目录或 `Dockerfile.web`（默认启动 `3000`）
+4. 设置环境变量：
+   - `api` 服务：
+     - `NOTEKING_LLM_API_KEY` = 你的 API Key
+     - `NOTEKING_LLM_BASE_URL` = `https://api.minimax.chat/v1` (MiniMax 中国区)
+     - `NOTEKING_LLM_MODEL` = `MiniMax-M2.7`
+   - `web` 服务：
+     - `NEXT_PUBLIC_API_URL` = 你的 Railway 后端域名（例如 `https://xxx-api.up.railway.app`）
+5. 将你的主域名（例如 `https://noteking-production.up.railway.app`）绑定到 `web` 服务
+6. 点击 Deploy
 
 ### 3. 访问
-Railway 会自动分配一个域名，如 `noteking-xxx.up.railway.app`
+- 打开 `web` 服务绑定的域名即可直接访问前端界面
+- 前端会通过 `NEXT_PUBLIC_API_URL` 调用 `api` 服务
 
 ---
 

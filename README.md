@@ -430,6 +430,7 @@ curl -X POST http://localhost:8000/api/v1/recording/process \
 | `NOTEKING_LLM_API_KEY` | 是 | LLM API Key (MiniMax/OpenAI/DeepSeek) |
 | `NOTEKING_LLM_BASE_URL` | 否 | 自定义 API 地址 |
 | `NOTEKING_LLM_MODEL` | 否 | 模型名称 (默认 gpt-4o-mini) |
+| `NEXT_PUBLIC_API_URL` | 前端部署时建议 | 前端调用后端 API 的完整地址（Railway 场景必配，如 `https://xxx-api.up.railway.app`） |
 | `HF_TOKEN` | 否 | HuggingFace Token (pyannote 说话人分离) |
 | `NOTEKING_PROXY` | 否 | 代理 (YouTube 访问) |
 | `BILIBILI_SESSDATA` | 否 | B站登录 Cookie |
