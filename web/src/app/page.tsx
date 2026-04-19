@@ -44,10 +44,18 @@ const SCENES = [
   { name: "entertainment", label: "娱乐", icon: "🎬", desc: "高光、金句" },
 ];
 
-const API_BASE =
-  typeof window !== "undefined"
-    ? `${window.location.protocol}//${window.location.hostname}:8000`
-    : "http://api:8000";
+const resolveApiBase = () => {
+  const envBase = process.env.NEXT_PUBLIC_API_URL?.trim();
+  if (envBase) return envBase.replace(/\/+$/, "");
+
+  if (typeof window !== "undefined") {
+    return `${window.location.protocol}//${window.location.hostname}:8000`;
+  }
+
+  return "http://api:8000";
+};
+
+const API_BASE = resolveApiBase();
 
 const HISTORY_KEY = "noteking_history";
 const MAX_HISTORY = 50;
